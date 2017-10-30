@@ -58,17 +58,17 @@ function fn_process_fbdata($input){
 //#####################################
 function fn_command_processtext($senderid, $cmdtext)
 {
-
+fn_command_sentiments($senderid, $cmdtext);
 if($cmdtext == "Hi"){
     send_text_message($senderid, "Hi there!");
 }
-elseif($cmdtext == "name?" || "nm"){
+elseif($cmdtext == "name?"){
     send_text_message($senderid, "My name is Chatbot!");
 }
 //default message
 else{
-    send_text_message($senderid, "Hmm.. Still learning: ".$cmdtext);
-}
+    send_text_message($senderid, "I am still learning...");
+  }
 
 }
 //#####################################
@@ -88,7 +88,6 @@ if(count($emojichars) > 0)
     foreach($emojichars as $k=>$v){
         $j .= $k.': '.$GLOBALS['emoji_maps']['names'][$v]."\r\n";
     }
-
      send_text_message($senderid, $j);
 }
 
