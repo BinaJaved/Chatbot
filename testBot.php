@@ -106,11 +106,81 @@ function fn_command_processtext($senderid, $cmdtext)
  //   $j .= $k.": ".$v."\r\n";
  // }
 fn_command_sentiments($senderid, $cmdtext);
-if($cmdtext == "Hi"){
-  // send_text_message($senderid, "Hi there! "."\xf0\x9f\x98\x8d");
-  send_text_message($senderid, "Hi ".$profiledata["first_name"]."! ");
-  // send_text_message($senderid, $j);
-
+if(stripos($cmdtext, "Hi hello hey") == true or 0 === stripos($cmdtext,'Hi')  or 0 === stripos($cmdtext, 'Hello'))
+{
+  send_text_message($senderid, "Hello ".$profiledata["first_name"]."! ");
+}
+elseif(stripos($cmdtext, "have other questions") == true or 0 === stripos($cmdtext, 'Other'))
+{
+  otherQuestionsTemp($senderid);
+}
+elseif(stripos($cmdtext, "add courses") == true or stripos($cmdtext, "add a course") == true or stripos($cmdtext, "drop a course") == true or 0 === strpos($cmdtext,'add or drop course')  or 0 === strpos($cmdtext, 'add or drop courses'))
+{
+  send_text_message($senderid, "You can add or drop a course using Memorial Self Service. If you are eligible to enrol in the course and course is disabled, you can register for the course using a Course Change Form available at department office. Please type in `okay` to continue");
+}
+elseif(stripos($cmdtext, "audit a course") == true or stripos($cmdtext, "audit course") == true or stripos($cmdtext, "audit courses") == true or 0 === strpos($cmdtext,'audit course'))
+{
+  send_text_message($senderid, "In order to audit any course, an individual must receive permission from the instructor in that course and the head of the academic unit in which the course is offered. Please type in `okay` to continue");
+}
+elseif(stripos($cmdtext, "enrolment verification") == true or stripos($cmdtext, "letter of enrolment") == true or stripos($cmdtext, "enrolment confirmation") == true or stripos($cmdtext, "enrolment") == true or 0 === strpos($cmdtext,'enrolment'))
+{
+  send_text_message($senderid, "You can request an enrolment verification letter via Memorial Self Service. Login using your student number and PIN, then click on the link to the Registration Menu, and follow the instructions labelled `Request Enrolment Verification`. Please type in `okay` to continue.");
+}
+elseif(stripos($cmdtext, "apply to graduate") == true or stripos($cmdtext, "apply for graduation") == true or stripos($cmdtext, "apply for graduate") == true or stripos($cmdtext, "graduation application") == true or 0 === strpos($cmdtext,'apply to graduate'))
+{
+  send_text_message($senderid, "You can submit an application from Memorial Self Service. Go to Student Menu, select `graduation` then `apply to graduate`. Please type in `okay` to continue");
+}
+elseif(stripos($cmdtext, "apply to convocation") == true or stripos($cmdtext, "apply for convocation") == true or stripos($cmdtext, "convocation") == true or stripos($cmdtext, "convocation help") == true or 0 === strpos($cmdtext,'apply for convocation'))
+{
+  send_text_message($senderid, "You can submit an application from Memorial Self Service. Go to Student Menu, select `graduation` then `Register to attend convocation`. Please type in `okay` to continue");
+}
+elseif(stripos($cmdtext, "graduation help") == true or stripos($cmdtext, "graduation") == true or stripos($cmdtext, "graduation related questions") == true or stripos($cmdtext, "graduation questions") == true or 0 === strpos($cmdtext,'graduation'))
+{
+  send_text_message($senderid, "Please send an email to `jjewison@mun.ca`. Please type in `okay` to continue");
+}
+elseif(stripos($cmdtext, "TA ") == true or stripos($cmdtext, "teaching assistant") == true or stripos($cmdtext, "teaching assistantship") == true or stripos($cmdtext, "mandatory teaching assistant") == true or 0 === strpos($cmdtext,'teaching assistant'))
+{
+  send_text_message($senderid, "You can apply for teaching assistant position in the beginning of the semester. It is not necessary to take a course for teaching assistant in each semester. Please type in `okay` to continue");
+}
+elseif(stripos($cmdtext, "pay my tuition") == true or stripos($cmdtext, "tuition") == true or stripos($cmdtext, "fee") == true or stripos($cmdtext, "fees") == true or stripos($cmdtext, "pay my fee") == true or 0 === strpos($cmdtext,'graduation'))
+{
+  send_text_message($senderid, "The Cashier's Office, AA-1023, is responsible for collection of all student fees and charges. For more information, visit the site https://www.mun.ca/finance/sections/cashiers_office/cashofficefaqs.php#Q1. Please type in `okay` to continue");
+}
+elseif(stripos($cmdtext, "trancript") == true or stripos($cmdtext, "my transcript") == true or stripos($cmdtext, "transcripts") == true or 0 === stripos($cmdtext,'transcript'))
+{
+  send_text_message($senderid, "You can request your transcript through Memorial Self Service. Go to `student menu`, click on `Academic Information Menu`, then you can submit a request for an `Official Transcript` or you can download an unofficial transcript. Please type in `okay` to continue");
+}
+elseif(stripos($cmdtext, "grades") == true or stripos($cmdtext, "my grades") == true or stripos($cmdtext, "grade") == true or 0 === stripos($cmdtext,'grade'))
+{
+  send_text_message($senderid, "You can view your term grades through Memorial Self Service. Go to `student menu`, click on `Academic Information Menu`, then you can select `view term grades`. Please type in `okay` to continue");
+}
+elseif(stripos($cmdtext, "tax form") == true or stripos($cmdtext, "tax forms") == true or 0 === stripos($cmdtext,'tax forms') or stripos($cmdtext, "tax slip") == true or stripos($cmdtext, "tax slips") == true)
+{
+  send_text_message($senderid, "You can download your tax forms through Memorial Self Service. Go to `employee services`, click on `tax forms`, then you can download the tax forms. Please type in `okay` to continue");
+}
+elseif(stripos($cmdtext, "payroll") == true or stripos($cmdtext, "salary") == true or 0 === stripos($cmdtext,'pay') or stripos($cmdtext, "funding") == true or stripos($cmdtext, "pay") == true)
+{
+  send_text_message($senderid, "You can view your pay through Memorial Self Service. Go to `employee services`, click on `pay information` to view your pay stubs. Please type in `okay` to continue");
+}
+elseif(stripos($cmdtext, "payroll deduction") == true or stripos($cmdtext, "payroll") == true or 0 === stripos($cmdtext,'payroll deduction'))
+{
+  send_text_message($senderid, "You can apply for payroll deduction through Memorial Self Service. Go to `employee services`, click on `payroll deduction` to submit your request. Please type in `okay` to continue");
+}
+elseif(stripos($cmdtext, "visa") == true or stripos($cmdtext, "immigration") == true or 0 === stripos($cmdtext,'visa'))
+{
+    visaCall($senderid);
+}
+elseif(stripos($cmdtext, "study permit") == true or stripos($cmdtext, "study visa") == true or stripos($cmdtext, "student visa") == true or stripos($cmdtext, "student permit") == true or 0 === stripos($cmdtext,'study permit'))
+{
+  send_text_message($senderid, "If you have received your `letter of acceptance` from MUN, then you are eligible to apply for study permit from cic website. \r\n You can apply for study permit extension before 2-3 months of your study permit expiry, you have check your eligibility from cic website and gather the required documents to apply. \r\n If your study permit has expired and you have submitted the request for extension then you should inform `International Students office`. Please type in `okay` to continue");
+}
+elseif(stripos($cmdtext, "coop permit") == true or stripos($cmdtext, "coop visa") == true or stripos($cmdtext, "co-op visa") == true or stripos($cmdtext, "co-op permit") == true or 0 === stripos($cmdtext,'coop permit'))
+{
+  send_text_message($senderid, "If you have completed your core courses then you can request a letter from coop office. Then you can apply for Co-op permit from cic website. Please type in `okay` to continue");
+}
+elseif(stripos($cmdtext, "work permit") == true or stripos($cmdtext, "work visa") == true or stripos($cmdtext, "open work permit") == true or 0 === stripos($cmdtext,'work permit'))
+{
+  send_text_message($senderid, "If you have received `letter of completion` from the school of gradute studies, then you can apply for post graduate work permit from cic website. Please type in `okay` to continue");
 }
 elseif($cmdtext == "send button template"){
     sendtemplate_btn($senderid);
@@ -118,7 +188,10 @@ elseif($cmdtext == "send button template"){
 elseif($cmdtext == "send generic template"){
     sendtemplate_generic($senderid);
 }
-elseif($cmdtext == "send templated carousel"){
+elseif(strpos($cmdtext, "okay") == true or $cmdtext == "Okay" or $cmdtext == "okay" or strpos($cmdtext, "ok") == true or 0 === strpos($cmdtext,'ok') or 0 === strpos($cmdtext,'Ok')) {
+    moreHelpTemp($senderid);
+}
+elseif(strpos($cmdtext, "more help") == true or $cmdtext == "more help" or strpos($cmdtext, "help") == true or 0 === strpos($cmdtext,'help') or 0 === strpos($cmdtext,'Help')) {
     sendtemplate_carousel($senderid);
 }
 elseif($cmdtext == "send quickreplytext"){
@@ -147,7 +220,7 @@ elseif($cmdtext == "name?"){
 }
 //default message
 else{
-    send_text_message($senderid, "I am still learning...");
+    send_text_message($senderid, "Please type `help` for assistance.");
   }
 
 }
@@ -176,7 +249,7 @@ global $apiurl, $graphapiurl, $page_access_token;
 
 $buttons[] = array("type" => "postback", "title"=> "Buy Now", "payload" => "Bot_Order_32");
 $buttons[] = array("type" => "postback", "title"=> "Save for Later", "payload" => "Bot_Order_Save_32");
-$buttons[] = array("type" => "phone_number", "title"=> "Contact Seller", "payload" => "+18008291040");
+$buttons[] = array("type" => "phone_number", "title"=> "Contact", "payload" => "+18008291040");
 
 $elements[] = array("title" => "Awesome Product #1", "subtitle"=> "It has these great qualities, would be useful!",
                     "image_url" => "https://aa5bd365.ngrok.io/files/i1.jpg", "item_url" => "http://google.com/", 'buttons' => $buttons);
@@ -213,6 +286,27 @@ $fp = fopen("logfbdata.txt","a");
 if( $fp == false ){ echo "file creation failed";}
 else{fwrite($fp,print_r($res, true)); fclose($fp);}
 }
+
+############################################################
+function quickReplyRegister($senderid)
+{
+global $apiurl, $graphapiurl, $page_access_token;
+
+$reply[] = array("content_type" => "text", "title"=> "Okay", "payload" => "Okay");
+$reply[] = array("content_type" => "text", "title"=> "Thank you", "payload" => "ThankYou");
+
+$sendmsg = new stdClass();
+$sendmsg->recipient->id = $senderid;
+$sendmsg->message->text = 'Please reply!';
+$sendmsg->message->quick_replies = $reply;
+
+$res = send_curl_data_tofb($sendmsg);
+
+$fp = fopen("logfbdata.txt","a");
+if( $fp == false ){ echo "file creation failed";}
+else{fwrite($fp,print_r($res, true)); fclose($fp);}
+}
+
 //######################################
 function sendtemplate_quickreplyimage($senderid)
 {
@@ -254,7 +348,8 @@ if(count($profiledata) == 0)
 }
 
 
-send_text_message($senderid, "Ok ".$profiledata["first_name"]."! \r\n".$replytext.': '.$cmdtext);
+// send_text_message($senderid, "Ok ".$profiledata["first_name"]."! \r\n".$replytext.': '.$cmdtext);
+moreHelpTemp($senderid);
 
 
 }
@@ -293,32 +388,28 @@ else{fwrite($fp,print_r($res, true)); fclose($fp);}
 //######################################
 function sendtemplate_carousel($senderid)
 {
-global $apiurl, $graphapiurl, $page_access_token;
+  global $apiurl, $graphapiurl, $page_access_token;
 
-$buttons[] = array("type" => "postback", "title"=> "Buy Now", "payload" => "Bot_Order_32");
-$buttons[] = array("type" => "postback", "title"=> "Save for Later", "payload" => "Bot_Order_Save_32");
-$buttons[] = array("type" => "phone_number", "title"=> "Contact Seller", "payload" => "+18008291040");
+  $buttons[] = array("type" => "phone_number", "title" => "Call", "payload" => "+18008291040");
+  $buttons[] = array("type" => "web_url", "title" => "Memorial University", "url" => "https://www.mun.ca");
+  $elements[] = array("title" => "Antonina Kolokolova", "subtitle" => "Associate Professor at the Department of Computer Science.",
+                      "image_url" => "http://www.cs.mun.ca/~kol/images/kol-Coffeeshop-colette-cropped.jpg", "item_url" => "http://www.cs.mun.ca/~kol/", 'buttons' => $buttons);
+  $elements[] = array("title" => "Administration Staff", "subtitle"=> "List of Administration Staff. You can reach out to anyone from the list.",
+                      "image_url" => "https://www.mun.ca/marcomm/brand/standards/logos/MUN_Logo_RGB.png", "item_url" => "http://www.mun.ca/regoff/contact/staff.php#adminstaff", 'buttons' => $buttons);
+  $elements[] = array("title" => "School of Grad Studies Staff", "subtitle"=> "List of SGS Staff. You can reach out to anyone from the list.",
+                      "image_url" => "https://www.google.ca/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwiSy-agiZzXAhUK0IMKHQWJAA8QjRwIBw&url=http%3A%2F%2Fwww.mun.ca%2Fbiophysics%2Fmubs%2Fbps_symposium%2F&psig=AOvVaw1yZ9MFqcl02Uk9p05y15mC&ust=1509580899901713", "item_url" => "https://www.mun.ca/sgs/contacts/sgscontacts.php", 'buttons' => $buttons);
 
-$elements[] = array("title" => "Awesome Product #1", "subtitle"=> "It has these great qualities, would be useful!",
-                    "image_url" => "https://aa5bd365.ngrok.io/files/i1.jpg", "item_url" => "http://google.com/", 'buttons' => $buttons);
-$elements[] = array("title" => "Awesome Product #2", "subtitle"=> "It has these great qualities, would be useful!",
-                    "image_url" => "https://aa5bd365.ngrok.io/files/i2.jpg", "item_url" => "http://google.com/", 'buttons' => $buttons);
-$elements[] = array("title" => "Awesome Product #3", "subtitle"=> "It has these great qualities, would be useful!",
-                    "image_url" => "https://aa5bd365.ngrok.io/files/i3.jpg", "item_url" => "http://google.com/", 'buttons' => $buttons);
-$elements[] = array("title" => "Awesome Product #4", "subtitle"=> "It has these great qualities, would be useful!",
-                    "image_url" => "https://aa5bd365.ngrok.io/files/i4.jpg", "item_url" => "http://google.com/", 'buttons' => $buttons);
+  $sendmsg = new stdClass();
+  $sendmsg->recipient->id = $senderid;
+  $sendmsg->message->attachment->type = 'template';
+  $sendmsg->message->attachment->payload->template_type = 'generic';
+  $sendmsg->message->attachment->payload->elements = $elements;
 
-$sendmsg = new stdClass();
-$sendmsg->recipient->id = $senderid;
-$sendmsg->message->attachment->type = 'template';
-$sendmsg->message->attachment->payload->template_type = 'generic';
-$sendmsg->message->attachment->payload->elements = $elements;
+  $res = send_curl_data_tofb($sendmsg);
 
-$res = send_curl_data_tofb($sendmsg);
-
-$fp = fopen("logfbdata.txt","a");
-if( $fp == false ){ echo "file creation failed";}
-else{fwrite($fp,print_r($res, true)); fclose($fp);}
+  $fp = fopen("logfbdata.txt","a");
+  if( $fp == false ){ echo "file creation failed";}
+  else{fwrite($fp,print_r($res, true)); fclose($fp);}
 }
 //######################################
 function sendfile_tofb($senderid, $filetype, $fileurl)
@@ -417,20 +508,96 @@ if(count($profiledata) == 0)
 if($cmdtext == "Get Started!"){
     send_text_message($senderid, "Hi ".$profiledata["first_name"]."!, How can i help you today?");
 }
-elseif($cmdtext == "Bot_Help"){
-    send_text_message($senderid, "These are the available commands for Help");
+elseif($cmdtext == "registration"){
+registrationCall($senderid);
 }
-elseif($cmdtext == "Bot_Orders"){
-    send_text_message($senderid, "These are Your previous orders");
+elseif($cmdtext == "graduation"){
+graduationCall($senderid);
 }
-elseif($cmdtext == "Bot_Cart"){
-    send_text_message($senderid, "These are the items in your cart.");
+elseif($cmdtext == "applyGraduate"){
+    send_text_message($senderid, "You can submit an application from Memorial Self Service. Go to Student Menu, select `graduation` then `apply to graduate`. Please type in `okay` to continue");
+}
+elseif($cmdtext == "convocation"){
+  send_text_message($senderid, "You can submit an application from Memorial Self Service. Go to Student Menu, select `graduation` then `Register to attend convocation`. Please type in `okay` to continue");
+}
+elseif($cmdtext == "moreQuestions"){
+    send_text_message($senderid, "Please send an email to `jjewison@mun.ca`. Please type in `okay` to continue");
+}
+elseif($cmdtext == "visa"){
+visaCall($senderid);
+}
+elseif($cmdtext == "studypermit"){
+    send_text_message($senderid, "If you have received your `letter of acceptance` from MUN, then you are eligible to apply for study permit from cic website. \r\n You can apply for study permit extension before 2-3 months of your study permit expiry, you have check your eligibility from cic website and gather the required documents to apply. \r\n If your study permit has expired and you have submitted the request for extension then you should inform `International Students office`. Please type in `okay` to continue");
+}
+elseif($cmdtext == "cooppermit"){
+  send_text_message($senderid, "If you have completed your core courses then you can request a letter from coop office. Then you can apply for Co-op permit from cic website. Please type in `okay` to continue");
+}
+elseif($cmdtext == "workpermit"){
+  send_text_message($senderid, "If you have received `letter of completion` from the school of gradute studies, then you can apply for post graduate work permit from cic website. Please type in `okay` to continue");
+}
+elseif($cmdtext == "employee"){
+empCall($senderid);
+}
+elseif($cmdtext == "grades"){
+gradesCall($senderid);
+}
+elseif($cmdtext == "grades"){
+  send_text_message($senderid, "You can view your term grades through Memorial Self Service. Go to `student menu`, click on `Academic Information Menu`, then you can select `view term grades`. Please type in `okay` to continue");
+}
+elseif($cmdtext == "transcript"){
+  send_text_message($senderid, "You can request your transcript through Memorial Self Service. Go to `student menu`, click on `Academic Information Menu`, then you can submit a request for an `Official Transcript` or you can download an unofficial transcript. Please type in `okay` to continue");
+}
+elseif($cmdtext == "taxforms"){
+  send_text_message($senderid, "You can download your tax forms through Memorial Self Service. Go to `employee services`, click on `tax forms`, then you can download the tax forms. Please type in `okay` to continue");
+}
+elseif($cmdtext == "payinfo"){
+  send_text_message($senderid, "You can view your pay through Memorial Self Service. Go to `employee services`, click on `pay information` to view your pay stubs. Please type in `okay` to continue");
+}
+elseif($cmdtext == "payroll"){
+  send_text_message($senderid, "You can apply for payroll deduction through Memorial Self Service. Go to `employee services`, click on `payroll deduction` to submit your request. Please type in `okay` to continue");
+}
+elseif($cmdtext == "AddDropCourse"){
+  send_text_message($senderid, "You can add or drop a course using Memorial Self Service. If you are eligible to enrol in the course and course is disabled, you can register for the course using a Course Change Form available at department office. Please type in `okay` to continue");
+}
+elseif($cmdtext == "auditCourse"){
+  send_text_message($senderid, "In order to audit any course, an individual must receive permission from the instructor in that course and the head of the academic unit in which the course is offered. Please type in `okay` to continue");
+}
+elseif($cmdtext == "enrolment"){
+   send_text_message($senderid, "You can request an enrolment verification letter via Memorial Self Service. Login using your student number and PIN, then click on the link to the Registration Menu, and follow the instructions labelled `Request Enrolment Verification`. Please type in `okay` to continue.");
+}
+elseif($cmdtext == "Yes!"){
+    sendtemplate_btn2($senderid);
+}
+elseif($cmdtext == "No!"){
+    send_text_message($senderid, "It was nice chatting with you, Bye!");
 }
 else{
-    send_text_message($senderid, "Ok. Got it: ".$cmdtext);
+  moreHelpTemp($senderid);
 }
 
 }
+//######################################
+function moreHelpTemp($senderid)
+{
+global $apiurl, $graphapiurl, $page_access_token;
+
+$elements[] = array("type" => "postback", "title"=> "Yes", "payload" => "Yes!");
+$elements[] = array("type" => "postback", "title"=> "No", "payload" => "No!");
+
+$sendmsg = new stdClass();
+$sendmsg->recipient->id = $senderid;
+$sendmsg->message->attachment->type = 'template';
+$sendmsg->message->attachment->payload->template_type = 'button';
+$sendmsg->message->attachment->payload->text = 'Do you need anything else?';
+$sendmsg->message->attachment->payload->buttons = $elements;
+
+$res = send_curl_data_tofb($sendmsg);
+
+$fp = fopen("logfbdata.txt","a");
+if( $fp == false ){ echo "file creation failed";}
+else{fwrite($fp,print_r($res, true)); fclose($fp);}
+}
+
 //######################################
 function setup_bot_reset()
 {
@@ -460,20 +627,21 @@ $jsonDataEncoded = json_encode($sendmsg);
 print_r($res);
 
 }
+
 //######################################
-function sendtemplate_btn($senderid)
+function otherQuestionsTemp($senderid)
 {
 global $apiurl, $graphapiurl, $page_access_token;
 
-$elements[] = array("type" => "postback", "title"=> "In Chat Window", "payload" => "Bot_Chat_Order");
-$elements[] = array("type" => "web_url", "title"=> "On Website", "url" => "http://google.com");
-$elements[] = array("type" => "phone_number", "title"=> "Over Phone", "payload" => "+18008291040");
+$elements[] = array("type" => "postback", "title"=> "Employee Services", "payload" => "employee");
+$elements[] = array("type" => "postback", "title"=> "Grades", "payload" => "grades");
+$elements[] = array("type" => "postback", "title"=> "Tax Forms", "payload" => "taxforms");
 
 $sendmsg = new stdClass();
 $sendmsg->recipient->id = $senderid;
 $sendmsg->message->attachment->type = 'template';
 $sendmsg->message->attachment->payload->template_type = 'button';
-$sendmsg->message->attachment->payload->text = 'How do you want to place your order?';
+$sendmsg->message->attachment->payload->text = 'How can I help you?';
 $sendmsg->message->attachment->payload->buttons = $elements;
 
 $res = send_curl_data_tofb($sendmsg);
@@ -482,6 +650,162 @@ $fp = fopen("logfbdata.txt","a");
 if( $fp == false ){ echo "file creation failed";}
 else{fwrite($fp,print_r($res, true)); fclose($fp);}
 }
+//######################################
+function sendtemplate_btn($senderid)
+{
+global $apiurl, $graphapiurl, $page_access_token;
+
+$elements[] = array("type" => "postback", "title"=> "Registration", "payload" => "registration");
+$elements[] = array("type" => "postback", "title"=> "Graduation", "payload" => "graduation");
+$elements[] = array("type" => "postback", "title"=> "Visa", "payload" => "visa");
+
+$sendmsg = new stdClass();
+$sendmsg->recipient->id = $senderid;
+$sendmsg->message->attachment->type = 'template';
+$sendmsg->message->attachment->payload->template_type = 'button';
+$sendmsg->message->attachment->payload->text = 'How can I help you? (type `other` for more questions)';
+$sendmsg->message->attachment->payload->buttons = $elements;
+
+$res = send_curl_data_tofb($sendmsg);
+
+$fp = fopen("logfbdata.txt","a");
+if( $fp == false ){ echo "file creation failed";}
+else{fwrite($fp,print_r($res, true)); fclose($fp);}
+}
+//######################################
+function sendtemplate_btn2($senderid)
+{
+global $apiurl, $graphapiurl, $page_access_token;
+
+$elements[] = array("type" => "postback", "title"=> "Registration", "payload" => "registration");
+$elements[] = array("type" => "postback", "title"=> "Graduation", "payload" => "graduation");
+$elements[] = array("type" => "postback", "title"=> "Visa", "payload" => "visa");
+
+$sendmsg = new stdClass();
+$sendmsg->recipient->id = $senderid;
+$sendmsg->message->attachment->type = 'template';
+$sendmsg->message->attachment->payload->template_type = 'button';
+$sendmsg->message->attachment->payload->text = 'How can I help you?';
+$sendmsg->message->attachment->payload->buttons = $elements;
+
+$res = send_curl_data_tofb($sendmsg);
+
+$fp = fopen("logfbdata.txt","a");
+if( $fp == false ){ echo "file creation failed";}
+else{fwrite($fp,print_r($res, true)); fclose($fp);}
+}
+//######################################
+function registrationCall($senderid)
+{
+global $apiurl, $graphapiurl, $page_access_token;
+
+$elements[] = array("type" => "postback", "title"=> "Add or Drop Courses", "payload" => "AddDropCourse");
+$elements[] = array("type" => "postback", "title"=> "Audit a Course", "payload" => "auditCourse");
+$elements[] = array("type" => "postback", "title"=> "Enrolment Letter", "payload" => "enrolment");
+
+$sendmsg = new stdClass();
+$sendmsg->recipient->id = $senderid;
+$sendmsg->message->attachment->type = 'template';
+$sendmsg->message->attachment->payload->template_type = 'button';
+$sendmsg->message->attachment->payload->text = 'What registration related help can I offer you today?';
+$sendmsg->message->attachment->payload->buttons = $elements;
+
+$res = send_curl_data_tofb($sendmsg);
+
+$fp = fopen("logfbdata.txt","a");
+if( $fp == false ){ echo "file creation failed";}
+else{fwrite($fp,print_r($res, true)); fclose($fp);}
+}
+##################################################
+function graduationCall($senderid)
+{
+global $apiurl, $graphapiurl, $page_access_token;
+
+$elements[] = array("type" => "postback", "title"=> "Apply to graduate", "payload" => "applyGraduate");
+$elements[] = array("type" => "postback", "title"=> "Convocation", "payload" => "convocation");
+$elements[] = array("type" => "postback", "title"=> "More questions", "payload" => "moreQuestions");
+
+$sendmsg = new stdClass();
+$sendmsg->recipient->id = $senderid;
+$sendmsg->message->attachment->type = 'template';
+$sendmsg->message->attachment->payload->template_type = 'button';
+$sendmsg->message->attachment->payload->text = 'What graduation related questions do you have?';
+$sendmsg->message->attachment->payload->buttons = $elements;
+
+$res = send_curl_data_tofb($sendmsg);
+
+$fp = fopen("logfbdata.txt","a");
+if( $fp == false ){ echo "file creation failed";}
+else{fwrite($fp,print_r($res, true)); fclose($fp);}
+}
+##################################################
+function gradesCall($senderid)
+{
+global $apiurl, $graphapiurl, $page_access_token;
+
+$elements[] = array("type" => "postback", "title"=> "Request Transcript", "payload" => "transcript");
+$elements[] = array("type" => "postback", "title"=> "View term grades", "payload" => "termgrades");
+
+$sendmsg = new stdClass();
+$sendmsg->recipient->id = $senderid;
+$sendmsg->message->attachment->type = 'template';
+$sendmsg->message->attachment->payload->template_type = 'button';
+$sendmsg->message->attachment->payload->text = 'You can view your grades or request your trancript?';
+$sendmsg->message->attachment->payload->buttons = $elements;
+
+$res = send_curl_data_tofb($sendmsg);
+
+$fp = fopen("logfbdata.txt","a");
+if( $fp == false ){ echo "file creation failed";}
+else{fwrite($fp,print_r($res, true)); fclose($fp);}
+}
+
+##################################################
+function empCall($senderid)
+{
+global $apiurl, $graphapiurl, $page_access_token;
+
+$elements[] = array("type" => "postback", "title"=> "Pay Info", "payload" => "payinfo");
+// $elements[] = array("type" => "postback", "title"=> "TA Info", "payload" => "tainfo");
+$elements[] = array("type" => "postback", "title"=> "Payroll Deduction", "payload" => "payroll");
+
+$sendmsg = new stdClass();
+$sendmsg->recipient->id = $senderid;
+$sendmsg->message->attachment->type = 'template';
+$sendmsg->message->attachment->payload->template_type = 'button';
+$sendmsg->message->attachment->payload->text = 'How can I help you with employee services?';
+$sendmsg->message->attachment->payload->buttons = $elements;
+
+$res = send_curl_data_tofb($sendmsg);
+
+$fp = fopen("logfbdata.txt","a");
+if( $fp == false ){ echo "file creation failed";}
+else{fwrite($fp,print_r($res, true)); fclose($fp);}
+}
+
+##################################################
+function visaCall($senderid)
+{
+global $apiurl, $graphapiurl, $page_access_token;
+
+$elements[] = array("type" => "postback", "title"=> "Study Permit", "payload" => "studypermit");
+$elements[] = array("type" => "postback", "title"=> "Co-op Work Permit", "payload" => "cooppermit");
+$elements[] = array("type" => "postback", "title"=> "Open Work Permit", "payload" => "workpermit");
+
+$sendmsg = new stdClass();
+$sendmsg->recipient->id = $senderid;
+$sendmsg->message->attachment->type = 'template';
+$sendmsg->message->attachment->payload->template_type = 'button';
+$sendmsg->message->attachment->payload->text = 'What visa related help can I offer you today?';
+$sendmsg->message->attachment->payload->buttons = $elements;
+
+$res = send_curl_data_tofb($sendmsg);
+
+$fp = fopen("logfbdata.txt","a");
+if( $fp == false ){ echo "file creation failed";}
+else{fwrite($fp,print_r($res, true)); fclose($fp);}
+}
+
 //#####################################
 function fn_command_processlocation($senderid, $data)
 {
